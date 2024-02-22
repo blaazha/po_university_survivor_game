@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://drwihsbggu0ac"]
+
+[ext_resource type="Texture2D" uid="uid://co7h3rpi538ef" path="res://assets/background/rocks_2.png" id="1_e3k5b"]
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_ra61a"]
+[ext_resource type="PackedScene" uid="uid://douwq5iouc2r4" path="res://scenes/player/player.tscn" id="2_34vcc"]
+[ext_resource type="PackedScene" uid="uid://iwpupt74thnc" path="res://scenes/projectile_a/projectile_a.tscn" id="2_syo0n"]
+[ext_resource type="PackedScene" uid="uid://bpd5npjrtg3f5" path="res://scenes/projectile_f/projectile_f.tscn" id="3_3u1kb"]
+[ext_resource type="PackedScene" uid="uid://2mf55buikul5" path="res://scenes/barrier/barrier.tscn" id="3_dsvr3"]
+[ext_resource type="PackedScene" uid="uid://0jrkji8w0xar" path="res://scenes/game_over/game_over.tscn" id="7_ap6vi"]
+[ext_resource type="PackedScene" uid="uid://berl8xxvkxhtl" path="res://scenes/score/score.tscn" id="8_1hxir"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ra61a")
+projectile_a_scene = ExtResource("2_syo0n")
+projectile_f_scene = ExtResource("3_3u1kb")
+
+[node name="Rocks2" type="Sprite2D" parent="."]
+position = Vector2(313, 360)
+texture = ExtResource("1_e3k5b")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_34vcc")]
+position = Vector2(74, 440)
+
+[node name="Barrier" parent="." instance=ExtResource("3_dsvr3")]
+position = Vector2(0, -10)
+
+[node name="Floor" parent="." instance=ExtResource("3_dsvr3")]
+position = Vector2(0, 863)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[node name="LeftTopMarker" type="Marker2D" parent="."]
+position = Vector2(527, 38)
+
+[node name="RightBottomMarker" type="Marker2D" parent="."]
+position = Vector2(786, 820)
+
+[node name="ProjectileHolder" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOver" parent="CanvasLayer" instance=ExtResource("7_ap6vi")]
+
+[node name="Score" parent="CanvasLayer" instance=ExtResource("8_1hxir")]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

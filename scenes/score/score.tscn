@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://berl8xxvkxhtl"]
+
+[ext_resource type="Script" path="res://scenes/score/score.gd" id="1_bmr76"]
+[ext_resource type="LabelSettings" uid="uid://c6m38yh7c0jx3" path="res://assets/lg_48_red.tres" id="2_l0efj"]
+
+[node name="Score" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bmr76")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "0"
+label_settings = ExtResource("2_l0efj")
